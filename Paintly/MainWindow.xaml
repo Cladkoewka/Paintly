@@ -1,0 +1,47 @@
+﻿<Window x:Class="Paintly.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:Paintly.Enums"
+        Icon="Resources/icon.ico"
+        Title="Paintly Cladkoewka" Height="720" Width="1080">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60px"/> 
+            <RowDefinition Height="*"/>    
+        </Grid.RowDefinitions>
+
+        <!-- Tools -->
+        <ToolBar Grid.Row="0" Margin="0,0,0,10" Background="RoyalBlue" FontSize="16" FontWeight="Medium">
+            <Button x:Name="SaveButton" BorderBrush="LightGray" Foreground="White" Content="Save" Click="Save_Click" Margin="5"/>
+            <Button x:Name="PencilButton" BorderBrush="LightGray" Foreground="White" Content="Pencil" Click="PencilTool_Click" Margin="5"/>
+            <Button x:Name="BrushButton" BorderBrush="LightGray" Foreground="White" Content="Brush" Click="BrushTool_Click" Margin="5"/>
+            <TextBlock Text="Brush type:"  Foreground="White" VerticalAlignment="Center"/>
+            <ComboBox x:Name="BrushTypeComboBox" Background="RoyalBlue" Foreground="White"  SelectionChanged="BrushTypeComboBox_SelectionChanged" Margin="5">
+                <ComboBoxItem Content="Classic" Tag="{x:Static local:BrushType.Classic}" IsSelected="True"/>
+                <ComboBoxItem Content="Spray" Tag="{x:Static local:BrushType.Spray}"/>
+            </ComboBox>
+            <Button x:Name="RectangleButton" BorderBrush="LightGray" Foreground="White" Content="Rect" Click="RectangleTool_Click" Margin="5"/>
+            <Button x:Name="CircleButton" BorderBrush="LightGray" Foreground="White" Content="Ellipse" Click="CircleTool_Click" Margin="5"/>
+            <Button x:Name="EraserButton" BorderBrush="LightGray" Foreground="White" Content="Eraser" Click="EraserTool_Click" Margin="5"/>
+
+            <TextBlock Text="Thickness:" Foreground="White" VerticalAlignment="Center"/>
+            <Slider Foreground="White" Minimum="1" Maximum="20" Value="1" Width="100" Margin="10,15,0,0"
+                    ValueChanged="ThicknessSlider_ValueChanged"/>
+
+            <TextBlock Text="Color:" VerticalAlignment="Center"/>
+            <Button Background="Black" BorderBrush="White" Click="BlackColor_Click" Width="20" Height="20" Margin="5"/>
+            <Button Background="White" BorderBrush="White" Click="WhiteColor_Click" Width="20" Height="20" Margin="5"/>
+            <Button Background="Red" BorderBrush="White" Click="RedColor_Click" Width="20" Height="20" Margin="5"/>
+            <Button Background="Green" BorderBrush="White" Click="GreenColor_Click" Width="20" Height="20" Margin="5"/>
+            <Button Background="Blue" BorderBrush="White" Click="BlueColor_Click" Width="20" Height="20" Margin="5"/>
+            <xctk:ColorPicker SelectedColorChanged="ColorPicker_SelectedColorChanged" Width="40" Height="20" Margin="5"/>
+            
+        </ToolBar>
+        
+        <Canvas Name="drawingCanvas" Grid.Row="1" Background="White" 
+                MouseDown="Canvas_MouseDown" 
+                MouseMove="Canvas_MouseMove" 
+                MouseUp="Canvas_MouseUp" />
+    </Grid>
+</Window>
